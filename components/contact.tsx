@@ -17,8 +17,12 @@ export type FormData = {
 };
 
 const Contact: FC = () => {
-  const { register, handleSubmit } = useForm<FormData>();
-  const { ref } = useSectionInView("Contact");
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<FormData>();
+  const { ref } = useSectionInView("Contact", 0.4);
 
   return (
     <motion.section
@@ -61,6 +65,13 @@ const Contact: FC = () => {
       >
         <input
           className="h-14 px-4 my-3 rounded-lg borderBlack dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
+          {...register("name", { required: true })}
+          type="text"
+          maxLength={500}
+          placeholder="Your name"
+        />
+        <input
+          className="h-14 px-4 my-3 rounded-lg borderBlack dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
           {...register("email", { required: true })}
           type="email"
           maxLength={500}
@@ -72,7 +83,7 @@ const Contact: FC = () => {
           placeholder="Your message"
           maxLength={5000}
         />
-        <SubmitBtn />
+        <SubmitBtn pending={isSubmitting} />
       </form>
     </motion.section>
   );

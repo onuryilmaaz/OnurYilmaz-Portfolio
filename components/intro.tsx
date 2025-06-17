@@ -11,7 +11,7 @@ import { useActiveSectionContext } from "@/context/active-section-context";
 import ppImage from "@/public/pp.jpg";
 
 export default function Intro() {
-  const { ref } = useSectionInView("Home", 0.5);
+  const { ref } = useSectionInView("Home", 0.4);
   const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
 
   return (

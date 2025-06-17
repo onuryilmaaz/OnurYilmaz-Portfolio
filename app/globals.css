@@ -13,3 +13,148 @@ html.dark {
 .borderBlack {
   @apply border border-black/10;
 }
+
+/* Beautiful optimized hover effects for skill cards */
+.skill-card {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.skill-card:hover {
+  transform: translateY(-6px) rotateY(5deg) scale(1.03);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+}
+
+.dark .skill-card:hover {
+  box-shadow: 0 20px 40px rgba(255, 255, 255, 0.12);
+}
+
+/* Icon wrapper and hover animations */
+.skill-icon-wrapper {
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  will-change: transform;
+}
+
+.skill-card:hover .skill-icon-wrapper {
+  transform: scale(1.08) rotateZ(3deg);
+}
+
+.skill-icon {
+  transition: all 0.3s ease-out;
+  will-change: transform, filter;
+}
+
+.skill-card:hover .skill-icon {
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+  transform: scale(1.02);
+}
+
+/* Enhanced gradient backdrop on hover */
+.skill-card:hover .skill-icon-wrapper > div:first-child {
+  opacity: 0.5 !important;
+  transform: scale(1.4) !important;
+}
+
+/* Project Card Animations */
+.project-card {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.project-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Tech Tags Hover Effects */
+.tech-tag {
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  will-change: transform;
+}
+
+.tech-tag:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Project Button Animations */
+.project-main-btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-main-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.project-main-btn:hover::before {
+  left: 100%;
+}
+
+/* Floating Link Button */
+.project-link-btn {
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  will-change: transform;
+}
+
+.project-link-btn:hover {
+  transform: scale(1.15) rotateZ(5deg);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Experience Timeline Enhancements */
+.experience-element .vertical-timeline-element-content {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.experience-element:hover .vertical-timeline-element-content {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+.dark .experience-element:hover .vertical-timeline-element-content {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Experience Tech Tags */
+.experience-tech-tag {
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  will-change: transform;
+}
+
+/* Experience Type Badge */
+.experience-type-badge {
+  transition: all 0.3s ease;
+  will-change: transform;
+}
+
+.experience-element:hover .experience-type-badge {
+  transform: scale(1.1) rotateZ(-3deg);
+}
+
+/* Timeline Icon Enhancements */
+.vertical-timeline-element-icon {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.experience-element:hover .vertical-timeline-element-icon {
+  transform: scale(1.1) rotateY(5deg);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25) !important;
+}

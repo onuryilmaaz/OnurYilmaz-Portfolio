@@ -6,52 +6,101 @@ import { skillsData } from "@/lib/data";
 import { useSectionInView } from "@/lib/hooks";
 import { motion } from "framer-motion";
 
+// Gradient colors for each skill - using CSS custom properties
+const skillColors: { [key: string]: { bg: string; text: string } } = {
+  React: { bg: "from-cyan-400 to-blue-500", text: "text-cyan-500" },
+  "Next.js": { bg: "from-gray-800 to-gray-600", text: "text-gray-700" },
+  Angular: { bg: "from-red-600 to-sky-500", text: "text-red-500" },
+  TypeScript: { bg: "from-blue-600 to-indigo-600", text: "text-blue-600" },
+  "Tailwind CSS": { bg: "from-teal-400 to-blue-500", text: "text-teal-500" },
+  Flutter: { bg: "from-blue-400 to-cyan-400", text: "text-blue-400" },
+  "Node.js": { bg: "from-green-500 to-emerald-600", text: "text-green-500" },
+  "Express.js": { bg: "from-gray-700 to-gray-900", text: "text-gray-700" },
+  Python: { bg: "from-blue-500 to-yellow-400", text: "text-yellow-500" },
+  ".NET Core": { bg: "from-sky-600 to-cyan-600", text: "text-sky-600" },
+  MongoDB: { bg: "from-green-600 to-green-800", text: "text-green-600" },
+  PostgreSQL: { bg: "from-blue-700 to-indigo-800", text: "text-blue-700" },
+  Prisma: { bg: "from-indigo-500 to-sky-600", text: "text-indigo-500" },
+  "MS SQL Server": { bg: "from-red-600 to-orange-600", text: "text-red-600" },
+  Git: { bg: "from-orange-600 to-red-600", text: "text-orange-600" },
+  Docker: { bg: "from-blue-500 to-cyan-500", text: "text-blue-500" },
+  "Framer Motion": { bg: "from-sky-500 to-cyan-600", text: "text-sky-500" },
+};
+
 const fadeInAnimationVariants = {
   initial: {
     opacity: 0,
-    y: 100,
+    y: 80,
   },
   animate: (index: number) => ({
     opacity: 1,
     y: 0,
     transition: {
-      delay: 0.05 * index,
+      delay: 0.04 * index,
+      duration: 0.5,
+      ease: "easeOut",
     },
   }),
 };
 
 export default function Skills() {
-  const { ref } = useSectionInView("Skills");
+  const { ref } = useSectionInView("Skills", 0.4);
 
   return (
     <section
       id="skills"
       ref={ref}
-      className="mb-30 max-w-[53rem] scroll-mt-28 text-center sm:mb-40"
+      className="mb-30 max-w-[60rem] scroll-mt-28 text-center sm:mb-40"
     >
       <SectionHeading>My skills</SectionHeading>
-      <ul className="flex flex-wrap justify-center gap-4 text-lg text-gray-800">
-        {skillsData.map((skill, index) => (
-          <motion.li
-            className="bg-white borderBlack rounded-xl px-8 py-5 dark:bg-white/10 dark:text-white/80 shadow-lg"
-            key={index}
-            variants={fadeInAnimationVariants}
-            initial="initial"
-            whileInView="animate"
-            viewport={{
-              once: true,
-            }}
-            custom={index}
-            whileHover={{ scale: 1.1 }}
-          >
-            <div className="flex flex-col items-center justify-center h-32 w-32">
-              <span className="text-center text-xl mb-2">{skill.name}</span>
-              <span className="text-5xl flex justify-center items-center transition-transform duration-300">
-                {React.createElement(skill.icon)}
-              </span>
-            </div>
-          </motion.li>
-        ))}
+      <p className="text-gray-700 dark:text-white/80 mb-8 text-lg">
+        Technologies I love working with
+      </p>
+      <ul className="flex flex-wrap justify-center gap-6 text-lg text-gray-800">
+        {skillsData.map((skill, index) => {
+          const colors = skillColors[skill.name] || {
+            bg: "from-gray-500 to-gray-700",
+            text: "text-gray-600",
+          };
+
+          return (
+            <motion.li
+              className="skill-card bg-white borderBlack rounded-xl px-6 py-6 dark:bg-white/10 dark:text-white/80 shadow-lg overflow-hidden relative"
+              key={index}
+              variants={fadeInAnimationVariants}
+              initial="initial"
+              whileInView="animate"
+              viewport={{
+                once: true,
+              }}
+              custom={index}
+            >
+              {/* Gradient Background */}
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${colors.bg} opacity-5 dark:opacity-10`}
+              />
+
+              <div className="flex flex-col items-center justify-center h-36 w-36 relative z-10">
+                <span className="text-center text-sm font-semibold mb-4 text-gray-700 dark:text-white/90 tracking-wide">
+                  {skill.name}
+                </span>
+                <div className="skill-icon-wrapper relative">
+                  {/* Gradient backdrop */}
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${colors.bg} blur-lg opacity-30 scale-125`}
+                  />
+
+                  {/* Icon with solid color */}
+                  <div
+                    className={`skill-icon text-7xl flex justify-center items-center ${colors.text} relative z-10 drop-shadow-md`}
+                  >
+                    {React.createElement(skill.icon)}
+                  </div>
+                </div>
+              </div>
+            </motion.li>
+          );
+        })}
       </ul>
     </section>
   );
