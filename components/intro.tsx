@@ -8,11 +8,13 @@ import { HiDownload } from "react-icons/hi";
 import { FaGithubSquare } from "react-icons/fa";
 import { useSectionInView } from "@/lib/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
+import { useLanguage } from "@/context/language-context";
 import ppImage from "@/public/pp.jpg";
 
 export default function Intro() {
   const { ref } = useSectionInView("Home", 0.4);
   const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
+  const { t } = useLanguage();
 
   return (
     <section
@@ -62,11 +64,8 @@ export default function Intro() {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <span className="font-bold">Hello, I'm Onur.</span> I'm a{" "}
-        <span className="font-bold">full-stack developer</span> with{" "}
-        <span className="font-bold">1 years</span> of experience. I enjoy
-        building <span className="italic">sites & apps</span>. My focus is{" "}
-        <span className="text-blue-900 underline">React (Next.js)</span>.
+        <span className="font-bold">{t("intro.greeting")}</span>{" "}
+        {t("intro.description")}
       </motion.h1>
 
       <motion.div
@@ -85,7 +84,7 @@ export default function Intro() {
             setTimeOfLastClick(Date.now());
           }}
         >
-          Contact me here{" "}
+          {t("intro.contactButton")}{" "}
           <BsArrowRight className="opacity-70 group-hover:translate-x-1 transition" />
         </Link>
 
@@ -94,7 +93,7 @@ export default function Intro() {
           href="/CV.pdf"
           download
         >
-          Download CV{" "}
+          {t("intro.downloadCV")}{" "}
           <HiDownload className="opacity-60 group-hover:translate-y-1 transition" />
         </a>
 

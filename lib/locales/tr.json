@@ -1,0 +1,84 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "about": "Hakkımda",
+    "projects": "Projeler",
+    "skills": "Yetenekler",
+    "experience": "Deneyim",
+    "contact": "İletişim"
+  },
+  "intro": {
+    "greeting": "Merhaba, ben Onur.",
+    "description": "2 yıllık deneyime sahip bir full-stack geliştiriciyim. Web siteleri ve uygulamalar geliştirmeyi seviyorum. Odağım React (Next.js).",
+    "contactButton": "Benimle iletişime geç",
+    "downloadCV": "CV İndir"
+  },
+  "about": {
+    "title": "Hakkımda",
+    "description": "2025 yılında Bilgisayar Mühendisliği'nden mezun oldum ve modern web uygulamaları geliştirme konusunda tutkuluyum. Bir full-stack geliştirici olarak hem frontend hem de backend teknolojileriyle çalışmayı seviyorum. Geliştirmenin en sevdiğim yanı, sağlam backend mimarisi sağlarken kusursuz kullanıcı deneyimleri yaratmaktır.",
+    "frontend": "Frontend geliştirme için Next.js, React ve Angular ile çalışıyorum. Backend tarafında .NET Core ve Node.js kullanıyorum. Veritabanları konusunda MongoDB, PostgreSQL ve MSSQL ile deneyimliyim. Yeni teknolojileri öğrenmeyi ve en son geliştirme trendlerini takip etmeyi seviyorum.",
+    "career": "Şu anda full-stack geliştirici olarak büyümek ve yenilikçi projelere katkıda bulunmak için fırsatlar arıyorum. Temiz, sürdürülebilir kod yazmaya ve fark yaratan uygulamalar oluşturmaya inanıyorum."
+  },
+  "skills": {
+    "title": "Yeteneklerim",
+    "subtitle": "Çalışmayı sevdiğim teknolojiler",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "database": "Veritabanı",
+    "tools": "Araçlar"
+  },
+  "projects": {
+    "title": "Projelerim",
+    "subtitle": "Yaratıcı geliştirme yolculuğumun bir vitrinii",
+    "viewProject": "Projeyi Görüntüle",
+    "liveDemo": "Canlı Demo",
+    "close": "Kapat",
+    "technologiesUsed": "Kullanılan Teknolojiler",
+    "viewLiveProject": "Canlı Projeyi Görüntüle",
+    "mediumClone": {
+      "title": "Medium Klonu",
+      "description": "Medium Clone uygulamam kullanıcıların makale yayınlamasına ve diğer yazarlardan içerik keşfetmesine olanak tanır.",
+      "longDescription": "Kullanıcı kimlik doğrulama, makale yayınlama, okuma işlevselliği ve sosyal etkileşimler içeren kapsamlı bir Medium klonu. Performans ve kullanıcı deneyimi odaklı modern web teknolojileri ile geliştirildi."
+    },
+    "twitterClone": {
+      "title": "Twitter Klonu",
+      "description": "Twitter Clone uygulamam kullanıcıların tweet gönderme, başkalarını takip etme ve gönderilerle etkileşim kurmasına olanak tanır.",
+      "longDescription": "Gerçek zamanlı güncellemeler, kullanıcı kimlik doğrulama, tweet gönderme, takip sistemi ve sosyal etkileşimler içeren tam özellikli bir Twitter klonu. Next.js ve modern React desenleri kullanılarak geliştirildi."
+    }
+  },
+  "experience": {
+    "title": "Deneyimim",
+    "clickToViewDetails": "Detayları görüntülemek için tıklayın",
+    "technologiesAndSkills": "Teknolojiler ve Beceriler",
+    "basiskele": {
+      "title": "React Geliştirici",
+      "company": "Başiskele Belediyesi - IT Bölümü",
+      "description": "Başiskele Belediyesi IT Bölümü'nde stajımı tamamladım ve React kullanarak web geliştirme üzerine odaklandım. Belediyenin ihtiyaçlarına yönelik çeşitli kullanıcı arayüzleri ve web bileşenleri geliştirdim, süreç boyunca React ile uygulamalı deneyim kazandım."
+    },
+    "isu": {
+      "title": "Sistem ve Bulut Stajyeri",
+      "company": "İSU Genel Müdürlüğü - IT Bölümü",
+      "description": "İSU Genel Müdürlüğü IT Bölümü'ndeki stajım süresince bulut altyapısını yönetme ve optimize etme konusunda pratik deneyim kazandım. Sorumluluklarım arasında bulut hizmetlerini yapılandırma, sistem güvenilirliği ve ölçeklenebilirliğini sağlama ve güvenlik protokollerinin uygulanmasına katkıda bulunma yer aldı."
+    },
+    "premierturk": {
+      "title": "Yazılım Geliştirme Stajyeri",
+      "company": "PremierTürk Bilgi Teknolojileri A.Ş. - Kocaeli Teknokent",
+      "description": "Şubat ile Temmuz 2025 arasında PremierTürk Bilgi Teknolojileri A.Ş.'de uzun dönemli yazılım geliştirme stajımı tamamladım. Bu süre zarfında .NET Core, Angular ve Flutter kullanarak full-stack web ve mobil uygulamalar geliştirdim. Takım tabanlı projelerde aktif olarak yer aldım ve geliştirme yaşam döngüsüne katkıda bulundum."
+    }
+  },
+  "contact": {
+    "title": "İletişim",
+    "subtitle": "Lütfen doğrudan onuryilm.41@gmail.com adresinden veya bu form aracılığıyla benimle iletişime geçin.",
+    "namePlaceholder": "Adınız",
+    "emailPlaceholder": "E-posta adresiniz",
+    "messagePlaceholder": "Mesajınız",
+    "submit": "Gönder",
+    "sending": "Gönderiliyor...",
+    "successMessage": "E-posta başarıyla gönderildi!",
+    "errorMessage": "E-posta gönderilemedi. Lütfen tekrar deneyin."
+  },
+  "footer": {
+    "copyright": "Tüm hakları saklıdır.",
+    "built": "React & Next.js ile yapıldı."
+  }
+}

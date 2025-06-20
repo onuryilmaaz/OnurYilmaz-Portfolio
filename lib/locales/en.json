@@ -1,0 +1,84 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "skills": "Skills",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "intro": {
+    "greeting": "Hello, I'm Onur.",
+    "description": "I'm a full-stack developer with 2 years of experience. I enjoy building sites & apps. My focus is React (Next.js).",
+    "contactButton": "Contact me here",
+    "downloadCV": "Download CV"
+  },
+  "about": {
+    "title": "About me",
+    "description": "I graduated from Computer Engineering in 2025 and I'm passionate about building modern web applications. As a full-stack developer, I love working on both frontend and backend technologies. My favorite part of development is creating seamless user experiences while ensuring robust backend architecture.",
+    "frontend": "For frontend development, I work with Next.js, React, and Angular. On the backend, I use .NET Core and Node.js. For databases, I'm experienced with MongoDB, PostgreSQL, and MSSQL. I enjoy learning new technologies and staying up-to-date with the latest development trends.",
+    "career": "I'm currently seeking opportunities to grow as a full-stack developer and contribute to innovative projects. I believe in writing clean, maintainable code and creating applications that make a difference."
+  },
+  "skills": {
+    "title": "My skills",
+    "subtitle": "Technologies I love working with",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "database": "Database",
+    "tools": "Tools"
+  },
+  "projects": {
+    "title": "My projects",
+    "subtitle": "A showcase of my creative development journey",
+    "viewProject": "View Project",
+    "liveDemo": "Live Demo",
+    "close": "Close",
+    "technologiesUsed": "Technologies Used",
+    "viewLiveProject": "View Live Project",
+    "mediumClone": {
+      "title": "Medium Clone",
+      "description": "My Medium Clone app allows users to publish articles and discover content from other writers.",
+      "longDescription": "A comprehensive Medium clone featuring user authentication, article publishing, reading functionality, and social interactions. Built with modern web technologies focusing on performance and user experience."
+    },
+    "twitterClone": {
+      "title": "Twitter Clone",
+      "description": "My Twitter Clone app lets users post tweets, follow others, and interact with posts.",
+      "longDescription": "A full-featured Twitter clone with real-time updates, user authentication, tweet posting, following system, and social interactions. Built using Next.js and modern React patterns."
+    }
+  },
+  "experience": {
+    "title": "My experience",
+    "clickToViewDetails": "Click to view details",
+    "technologiesAndSkills": "Technologies & Skills",
+    "basiskele": {
+      "title": "React Developer",
+      "company": "Başiskele Municipality - IT Department",
+      "description": "I completed my internship at Başiskele Municipality's IT Department, focusing on web development using React. I developed various user interfaces and web components tailored to the municipality's needs, gaining hands-on experience with React throughout the process."
+    },
+    "isu": {
+      "title": "Systems and Cloud Intern",
+      "company": "İSU General Directorate - IT Department",
+      "description": "During my internship at İSU General Directorate's IT Department, I gained practical experience in managing and optimizing cloud infrastructure. My responsibilities included configuring cloud services, ensuring system reliability and scalability, and contributing to the implementation of security protocols."
+    },
+    "premierturk": {
+      "title": "Software Development Intern",
+      "company": "PremierTürk Information Technologies Inc. - Kocaeli Technopark",
+      "description": "Between February and July 2025, I completed a long-term software development internship at PremierTürk Information Technologies Inc. During this time, I developed full-stack web and mobile applications using .NET Core, Angular, and Flutter. I actively participated in team-based projects and contributed to the development lifecycle."
+    }
+  },
+  "contact": {
+    "title": "Contact me",
+    "subtitle": "Please contact me directly at onuryilm.41@gmail.com or through this form.",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "Your email",
+    "messagePlaceholder": "Your message",
+    "submit": "Submit",
+    "sending": "Sending...",
+    "successMessage": "Email sent successfully!",
+    "errorMessage": "Failed to send email. Please try again."
+  },
+  "footer": {
+    "copyright": "All rights reserved.",
+    "built": "Built with React & Next.js."
+  }
+}

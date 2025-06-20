@@ -16,15 +16,14 @@ html.dark {
 
 /* Beautiful optimized hover effects for skill cards */
 .skill-card {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
   will-change: transform;
   backface-visibility: hidden;
-  transform-style: preserve-3d;
 }
 
 .skill-card:hover {
-  transform: translateY(-6px) rotateY(5deg) scale(1.03);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
 .dark .skill-card:hover {
@@ -33,21 +32,20 @@ html.dark {
 
 /* Icon wrapper and hover animations */
 .skill-icon-wrapper {
-  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: transform 0.2s ease-out;
   will-change: transform;
 }
 
 .skill-card:hover .skill-icon-wrapper {
-  transform: scale(1.08) rotateZ(3deg);
+  transform: scale(1.05);
 }
 
 .skill-icon {
-  transition: all 0.3s ease-out;
-  will-change: transform, filter;
+  transition: transform 0.2s ease-out;
+  will-change: transform;
 }
 
 .skill-card:hover .skill-icon {
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
   transform: scale(1.02);
 }
 
@@ -157,4 +155,20 @@ html.dark {
 .experience-element:hover .vertical-timeline-element-icon {
   transform: scale(1.1) rotateY(5deg);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Simple fade-in-up animation for projects */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.4s ease-out;
 }

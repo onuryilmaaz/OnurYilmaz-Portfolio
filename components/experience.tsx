@@ -10,6 +10,7 @@ import "react-vertical-timeline-component/style.min.css";
 import { experiences, experiencesData } from "@/lib/data";
 import { useSectionInView } from "@/lib/hooks";
 import { useTheme } from "@/context/theme-context";
+import { useLanguage } from "@/context/language-context";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiX, FiMapPin, FiCalendar } from "react-icons/fi";
 
@@ -43,22 +44,26 @@ const techColors: { [key: string]: string } = {
 export default function Experience() {
   const { ref } = useSectionInView("Experience", 0.4);
   const { theme } = useTheme();
+  const { t } = useLanguage();
   const [selectedExperience, setSelectedExperience] = useState<
     (typeof experiences)[0] | null
   >(null);
 
+  // Experience key mapping
+  const getExperienceKey = (expId: string) => {
+    if (expId.includes("basiskele")) return "basiskele";
+    if (expId.includes("isu")) return "isu";
+    if (expId.includes("premierturk")) return "premierturk";
+    return "basiskele"; // fallback
+  };
+
   return (
     <section id="experience" ref={ref} className="scroll-mt-28 mb-28 sm:mb-40">
-      <SectionHeading>My experience</SectionHeading>
+      <SectionHeading>{t("experience.title")}</SectionHeading>
 
       <VerticalTimeline lineColor="">
-        {experiencesData.map((item, index) => {
-          // Find the detailed experience data
-          const detailedExp = experiences.find(
-            (exp) =>
-              exp.company === item.title ||
-              exp.title === item.title.split(".")[0]
-          );
+        {experiences.map((item, index) => {
+          const experienceKey = getExperienceKey(item.id);
 
           return (
             <React.Fragment key={index}>
@@ -79,25 +84,27 @@ export default function Experience() {
                       : "0.4rem solid rgba(255, 255, 255, 0.5)",
                 }}
                 date={item.date}
-                icon={item.icon}
+                icon={React.createElement(item.icon)}
                 iconStyle={{
                   background:
                     theme === "light" ? "#f3f4f6" : "rgba(255, 255, 255, 0.15)",
                   fontSize: "1.5rem",
                 }}
                 onTimelineElementClick={() => {
-                  if (detailedExp) {
-                    setSelectedExperience(detailedExp);
-                  }
+                  setSelectedExperience(item);
                 }}
               >
-                <h3 className="font-semibold capitalize">{item.title}</h3>
-                <p className="font-normal !mt-0">{item.location}</p>
+                <h3 className="font-semibold capitalize">
+                  {t(`experience.${experienceKey}.title`)}
+                </h3>
+                <p className="font-normal !mt-0">
+                  {t(`experience.${experienceKey}.company`)}
+                </p>
                 <p className="!mt-1 !font-normal text-gray-700 dark:text-white/75">
-                  {item.description}
+                  {t(`experience.${experienceKey}.description`)}
                 </p>
                 <p className="text-xs text-gray-500 dark:text-white/50 mt-2">
-                  Click to view details
+                  {t("experience.clickToViewDetails")}
                 </p>
               </VerticalTimelineElement>
             </React.Fragment>
@@ -153,11 +160,19 @@ export default function Experience() {
               <div className="p-6">
                 {/* Title & Company */}
                 <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-2 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
-                  {selectedExperience.title}
+                  {t(
+                    `experience.${getExperienceKey(
+                      selectedExperience.id
+                    )}.title`
+                  )}
                 </h2>
 
                 <h3 className="text-xl font-semibold text-gray-700 dark:text-white/80 mb-4">
-                  {selectedExperience.company}
+                  {t(
+                    `experience.${getExperienceKey(
+                      selectedExperience.id
+                    )}.company`
+                  )}
                 </h3>
 
                 {/* Location & Date */}
@@ -174,14 +189,18 @@ export default function Experience() {
 
                 {/* Description */}
                 <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed mb-6">
-                  {selectedExperience.description}
+                  {t(
+                    `experience.${getExperienceKey(
+                      selectedExperience.id
+                    )}.description`
+                  )}
                 </p>
 
                 {/* Technologies */}
                 <div className="mb-6">
                   <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
                     <span className="w-1 h-6 bg-gradient-to-b from-cyan-500 to-blue-600 rounded-full"></span>
-                    Technologies & Skills
+                    {t("experience.technologiesAndSkills")}
                   </h4>
                   <div className="flex flex-wrap gap-3">
                     {selectedExperience.technologies.map((tech, index) => {
@@ -196,16 +215,6 @@ export default function Experience() {
                       );
                     })}
                   </div>
-                </div>
-
-                {/* Close Button */}
-                <div className="flex justify-end">
-                  <button
-                    onClick={() => setSelectedExperience(null)}
-                    className="flex items-center gap-2 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-white px-6 py-3 rounded-xl font-medium hover:border-cyan-500 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors duration-200"
-                  >
-                    Close
-                  </button>
                 </div>
               </div>
             </motion.div>

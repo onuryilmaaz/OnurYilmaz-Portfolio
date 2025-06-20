@@ -1,11 +1,14 @@
 import React from "react";
 import { FaPaperPlane } from "react-icons/fa";
+import { useLanguage } from "@/context/language-context";
 
 interface SubmitBtnProps {
   pending?: boolean;
 }
 
 export default function SubmitBtn({ pending = false }: SubmitBtnProps) {
+  const { t } = useLanguage();
+
   return (
     <button
       type="submit"
@@ -16,7 +19,7 @@ export default function SubmitBtn({ pending = false }: SubmitBtnProps) {
         <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-white"></div>
       ) : (
         <>
-          Submit{" "}
+          {t("contact.submit")}{" "}
           <FaPaperPlane className="text-xs opacity-70 transition-all group-hover:translate-x-1 group-hover:-translate-y-1" />{" "}
         </>
       )}
