@@ -1,14 +1,10 @@
 "use client";
 
-import React, { useEffect, useState, createContext, useContext } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import trTranslations from "@/lib/locales/tr.json";
 import enTranslations from "@/lib/locales/en.json";
 
-type Language = "tr" | "en";
-
-type LanguageContextProviderProps = {
-  children: React.ReactNode;
-};
+export type Language = "tr" | "en";
 
 type LanguageContextType = {
   language: Language;
@@ -25,52 +21,46 @@ const translations = {
 
 export default function LanguageContextProvider({
   children,
-}: LanguageContextProviderProps) {
+}: {
+  children: React.ReactNode;
+}) {
   const [language, setLanguage] = useState<Language>("tr");
 
+  useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem("language");
+      if (stored === "tr" || stored === "en") setLanguage(stored);
+    } catch {}
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+
   const toggleLanguage = () => {
-    if (language === "tr") {
-      setLanguage("en");
-      window.localStorage.setItem("language", "en");
-    } else {
-      setLanguage("tr");
-      window.localStorage.setItem("language", "tr");
-    }
+    const next: Language = language === "tr" ? "en" : "tr";
+    setLanguage(next);
+    try {
+      window.localStorage.setItem("language", next);
+    } catch {}
   };
 
   const t = (key: string): string => {
-    const keys = key.split(".");
-    let result: any = translations[language];
+    let result: unknown = translations[language];
 
-    for (const k of keys) {
+    for (const k of key.split(".")) {
       if (result && typeof result === "object" && k in result) {
-        result = result[k];
+        result = (result as Record<string, unknown>)[k];
       } else {
-        return key; // Return key if translation not found
+        return key;
       }
     }
 
     return typeof result === "string" ? result : key;
   };
 
-  useEffect(() => {
-    const localLanguage = window.localStorage.getItem(
-      "language"
-    ) as Language | null;
-
-    if (localLanguage && (localLanguage === "tr" || localLanguage === "en")) {
-      setLanguage(localLanguage);
-    }
-  }, []);
-
   return (
-    <LanguageContext.Provider
-      value={{
-        language,
-        toggleLanguage,
-        t,
-      }}
-    >
+    <LanguageContext.Provider value={{ language, toggleLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );
@@ -80,9 +70,7 @@ export function useLanguage() {
   const context = useContext(LanguageContext);
 
   if (context === null) {
-    throw new Error(
-      "useLanguage must be used within a LanguageContextProvider"
-    );
+    throw new Error("useLanguage must be used within a LanguageContextProvider");
   }
 
   return context;

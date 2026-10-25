@@ -1,25 +1,13 @@
-import { FormData } from "@/components/contact";
+import type { ContactFormData } from "@/lib/types";
 
-export async function sendEmail(data: FormData): Promise<void> {
-  const apiEndpoint = "/api/email";
+export async function sendEmail(data: ContactFormData): Promise<void> {
+  const response = await fetch("/api/email", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
 
-  try {
-    const response = await fetch(apiEndpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Failed to send email: ${response.statusText}`);
-    }
-
-    const result = await response.json();
-    console.log(result.message);
-  } catch (err) {
-    console.error("Error sending email:", err);
-    throw err;
+  if (!response.ok) {
+    throw new Error(`Failed to send email: ${response.status}`);
   }
 }

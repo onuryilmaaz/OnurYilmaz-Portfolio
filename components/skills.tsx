@@ -1,147 +1,222 @@
 "use client";
 
 import React from "react";
+import clsx from "clsx";
+import { motion } from "motion/react";
 import SectionHeading from "./section-heading";
 import { getSkillsByCategory } from "@/lib/data";
-import { useSectionInView } from "@/lib/hooks";
-import { motion } from "framer-motion";
+import type { Skill } from "@/lib/types";
 import { useLanguage } from "@/context/language-context";
 
-// Gradient colors for each skill
-const skillColors: { [key: string]: { bg: string; text: string } } = {
-  React: { bg: "from-cyan-400 to-blue-500", text: "text-cyan-500" },
-  "Next.js": { bg: "from-gray-800 to-gray-600", text: "text-gray-700" },
-  Angular: { bg: "from-red-600 to-sky-500", text: "text-red-500" },
-  TypeScript: { bg: "from-blue-600 to-indigo-600", text: "text-blue-600" },
-  "Tailwind CSS": { bg: "from-teal-400 to-blue-500", text: "text-teal-500" },
-  Flutter: { bg: "from-blue-400 to-cyan-400", text: "text-blue-400" },
-  "Node.js": { bg: "from-green-500 to-emerald-600", text: "text-green-500" },
-  "Express.js": { bg: "from-gray-700 to-gray-900", text: "text-gray-700" },
-  Python: { bg: "from-blue-500 to-yellow-400", text: "text-yellow-500" },
-  ".NET Core": { bg: "from-sky-600 to-cyan-600", text: "text-sky-600" },
-  MongoDB: { bg: "from-green-600 to-green-800", text: "text-green-600" },
-  PostgreSQL: { bg: "from-blue-700 to-indigo-800", text: "text-blue-700" },
-  Prisma: { bg: "from-indigo-500 to-sky-600", text: "text-indigo-500" },
-  "MS SQL Server": { bg: "from-red-600 to-orange-600", text: "text-red-600" },
-  Git: { bg: "from-orange-600 to-red-600", text: "text-orange-600" },
-  Docker: { bg: "from-blue-500 to-cyan-500", text: "text-blue-500" },
-};
+const ease = [0.65, 0, 0.35, 1] as const;
+const inView = { once: true, amount: 0.4 } as const;
 
-const categories = [
-  {
-    name: "Frontend",
-    key: "frontend" as const,
-  },
-  {
-    name: "Backend",
-    key: "backend" as const,
-  },
-  {
-    name: "Database",
-    key: "database" as const,
-  },
-  {
-    name: "Tools",
-    key: "tools" as const,
-  },
-];
+function SkillList({ items, tone = "default" }: { items: Skill[]; tone?: "default" | "accent" }) {
+  return (
+    <ul className="grid grid-cols-2 gap-x-4 gap-y-3">
+      {items.map((skill, i) => (
+        <motion.li
+          key={skill.name}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={inView}
+          transition={{ duration: 0.5, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
+          className={clsx(
+            "flex items-center gap-2.5 text-sm font-medium",
+            tone === "accent" ? "text-accent-ink" : "text-fg"
+          )}
+        >
+          <skill.icon aria-hidden className="size-4.5 shrink-0 opacity-80" />
+          {skill.name}
+        </motion.li>
+      ))}
+    </ul>
+  );
+}
 
-const fadeInAnimationVariants = {
-  initial: {
-    opacity: 0,
-    y: 30,
-  },
-  animate: (index: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 0.02 * index,
-      duration: 0.3,
-      ease: "easeOut",
-    },
-  }),
-};
+// Three stacked disks that draw themselves, a plain nod to the database glyph.
+function DatabaseArt() {
+  const rings = [30, 62, 94];
+  return (
+    <svg aria-hidden viewBox="0 0 160 130" className="h-28 w-auto text-fg">
+      <motion.path
+        d="M20 30 V94 M140 30 V94"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        fill="none"
+        initial={{ pathLength: 0 }}
+        whileInView={{ pathLength: 1 }}
+        viewport={inView}
+        transition={{ duration: 1, ease }}
+      />
+      {rings.map((cy, i) => (
+        <motion.ellipse
+          key={cy}
+          cx="80"
+          cy={cy}
+          rx="60"
+          ry="16"
+          fill={i === 0 ? "var(--accent)" : "none"}
+          stroke="currentColor"
+          strokeWidth="1.5"
+          initial={{ pathLength: 0, opacity: 0 }}
+          whileInView={{ pathLength: 1, opacity: 1 }}
+          viewport={inView}
+          transition={{ duration: 0.9, delay: 0.25 + i * 0.18, ease }}
+        />
+      ))}
+    </svg>
+  );
+}
+
+// A feature branch splitting off main and merging back.
+function GitArt() {
+  const nodes = [
+    { cx: 20, cy: 60, d: 0.1 },
+    { cx: 90, cy: 60, d: 0.35 },
+    { cx: 150, cy: 22, d: 0.75 },
+    { cx: 215, cy: 22, d: 0.95 },
+    { cx: 280, cy: 60, d: 1.25 },
+    { cx: 340, cy: 60, d: 1.45 },
+  ];
+  return (
+    <svg aria-hidden viewBox="0 0 360 80" className="h-16 w-full max-w-105 text-muted">
+      <motion.path
+        d="M20 60 H340"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        fill="none"
+        initial={{ pathLength: 0 }}
+        whileInView={{ pathLength: 1 }}
+        viewport={inView}
+        transition={{ duration: 1.4, ease }}
+      />
+      <motion.path
+        d="M90 60 C 115 60, 120 22, 150 22 H215 C 245 22, 250 60, 280 60"
+        stroke="var(--accent-fg)"
+        strokeWidth="2"
+        fill="none"
+        initial={{ pathLength: 0 }}
+        whileInView={{ pathLength: 1 }}
+        viewport={inView}
+        transition={{ duration: 1.2, delay: 0.35, ease }}
+      />
+      {nodes.map((n) => (
+        <motion.circle
+          key={`${n.cx}-${n.cy}`}
+          cx={n.cx}
+          cy={n.cy}
+          r="6"
+          fill="var(--surface)"
+          stroke={n.cy === 22 ? "var(--accent-fg)" : "currentColor"}
+          strokeWidth="2"
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          viewport={inView}
+          style={{ transformBox: "fill-box", transformOrigin: "center" }}
+          transition={{ type: "spring", stiffness: 400, damping: 15, delay: n.d }}
+        />
+      ))}
+    </svg>
+  );
+}
+
+const cell = "relative overflow-hidden rounded-[20px] border border-line p-6 md:p-8";
 
 export default function Skills() {
-  const { ref } = useSectionInView("Skills", 0.4);
   const { t } = useLanguage();
+  const frontend = getSkillsByCategory("frontend");
 
   return (
-    <section
-      id="skills"
-      ref={ref}
-      className="mb-30 max-w-[60rem] scroll-mt-28 text-center sm:mb-40"
-    >
-      <SectionHeading>{t("skills.title")}</SectionHeading>
-      <p className="text-gray-700 dark:text-white/80 mb-8 text-lg">
-        {t("skills.subtitle")}
-      </p>
+    <section id="skills" aria-labelledby="skills-title" className="scroll-mt-20 py-24 md:py-32">
+      <div className="mx-auto max-w-350 px-4 md:px-8">
+        <SectionHeading id="skills-title">{t("skills.title")}</SectionHeading>
 
-      {categories.map((category, categoryIndex) => {
-        const skillsInCategory = getSkillsByCategory(category.key);
-
-        return (
-          <div key={category.key} className="mb-12">
-            {/* Category Title */}
-            <motion.h3
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.1 + categoryIndex * 0.05 }}
-              className="text-2xl font-bold text-gray-900 dark:text-white mb-6"
+        <div className="mt-12 grid grid-cols-1 gap-3 md:mt-16 md:grid-cols-6 md:gap-4">
+          {/* Frontend: the widest cell, logo tiles over a faded dot field */}
+          <div className={clsx(cell, "bg-surface md:col-span-4 md:row-span-2")}>
+            <svg
+              aria-hidden
+              className="pointer-events-none absolute inset-0 size-full text-fg/15 mask-[radial-gradient(ellipse_at_top_right,black,transparent_70%)]"
             >
-              {t(`skills.${category.key}`)}
-            </motion.h3>
+              <defs>
+                <pattern id="dots" width="18" height="18" patternUnits="userSpaceOnUse">
+                  <circle cx="1.5" cy="1.5" r="1.5" fill="currentColor" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#dots)" />
+            </svg>
 
-            {/* Skills List */}
-            <ul className="flex flex-wrap justify-center gap-6 text-lg text-gray-800">
-              {skillsInCategory.map((skill, index) => {
-                const colors = skillColors[skill.name] || {
-                  bg: "from-gray-500 to-gray-700",
-                  text: "text-gray-600",
-                };
-
-                return (
+            <div className="relative flex h-full flex-col justify-between gap-10">
+              <div>
+                <h3 className="text-2xl font-semibold tracking-tight">{t("skills.frontend")}</h3>
+                <p className="mt-2 max-w-[40ch] text-muted">{t("skills.frontendNote")}</p>
+              </div>
+              <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                {frontend.map((skill, i) => (
                   <motion.li
-                    className="skill-card bg-white borderBlack rounded-xl px-6 py-6 dark:bg-white/10 dark:text-white/80 shadow-lg overflow-hidden relative"
-                    key={skill.id}
-                    variants={fadeInAnimationVariants}
-                    initial="initial"
-                    whileInView="animate"
-                    viewport={{
-                      once: true,
-                    }}
-                    custom={categoryIndex * 10 + index}
+                    key={skill.name}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={inView}
+                    transition={{ duration: 0.6, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                    whileHover={{ y: -4 }}
+                    className="group/tile flex flex-col gap-6 rounded-[14px] border border-line bg-bg/70 p-4 backdrop-blur-sm"
                   >
-                    {/* Gradient Background */}
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${colors.bg} opacity-5 dark:opacity-10`}
+                    <skill.icon
+                      aria-hidden
+                      className="size-8 text-muted transition-colors duration-300 group-hover/tile:text-accent-fg"
                     />
-
-                    <div className="flex flex-col items-center justify-center h-36 w-36 relative z-10">
-                      <span className="text-center text-sm font-semibold mb-4 text-gray-700 dark:text-white/90 tracking-wide">
-                        {skill.name}
-                      </span>
-                      <div className="skill-icon-wrapper relative">
-                        {/* Gradient backdrop */}
-                        <div
-                          className={`absolute inset-0 bg-gradient-to-br ${colors.bg} blur-lg opacity-30 scale-125`}
-                        />
-
-                        {/* Icon with solid color */}
-                        <div
-                          className={`skill-icon text-7xl flex justify-center items-center ${colors.text} relative z-10 drop-shadow-md`}
-                        >
-                          {React.createElement(skill.icon)}
-                        </div>
-                      </div>
-                    </div>
+                    <span className="text-sm font-medium">{skill.name}</span>
                   </motion.li>
-                );
-              })}
-            </ul>
+                ))}
+              </ul>
+            </div>
           </div>
-        );
-      })}
+
+          {/* Backend: accent fill */}
+          <div className={clsx(cell, "border-transparent bg-accent text-accent-ink md:col-span-2")}>
+            <h3 className="text-2xl font-semibold tracking-tight">{t("skills.backend")}</h3>
+            <p className="mb-8 mt-2 text-accent-ink/75">{t("skills.backendNote")}</p>
+            <SkillList items={getSkillsByCategory("backend")} tone="accent" />
+          </div>
+
+          {/* Database: tinted surface with drawn cylinder */}
+          <div className={clsx(cell, "bg-surface-2 md:col-span-2")}>
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h3 className="text-2xl font-semibold tracking-tight">{t("skills.database")}</h3>
+                <p className="mt-2 text-muted">{t("skills.databaseNote")}</p>
+              </div>
+              <DatabaseArt />
+            </div>
+            <div className="mt-6">
+              <SkillList items={getSkillsByCategory("database")} />
+            </div>
+          </div>
+
+          {/* Tools: full-width strip with the git graph */}
+          <div
+            className={clsx(
+              cell,
+              "flex flex-col gap-6 bg-surface md:col-span-6 md:flex-row md:items-center md:justify-between"
+            )}
+          >
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+              <h3 className="text-2xl font-semibold tracking-tight">{t("skills.tools")}</h3>
+              <ul className="flex items-center gap-6">
+                {getSkillsByCategory("tools").map((skill) => (
+                  <li key={skill.name} className="flex items-center gap-2.5 text-sm font-medium">
+                    <skill.icon aria-hidden className="size-4.5 opacity-80" />
+                    {skill.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <GitArt />
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

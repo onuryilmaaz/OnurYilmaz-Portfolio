@@ -1,174 +1,107 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  Design tokens. One neutral family (zinc), one accent (lime).
+  Radius scale: cards 20px, inputs 12px, interactive controls full pill.
+  z-index scale: content 0, header 40, mobile menu 50, grain 60.
+*/
+:root {
+  --bg: #f4f4f5;
+  --surface: #ffffff;
+  --surface-2: #ebebed;
+  --line: rgb(17 17 19 / 0.1);
+  --fg: #111113;
+  --muted: #5b5c63;
+  --accent: #c6f04d;
+  --accent-ink: #111113;
+  --accent-fg: #4a6a00;
+  --shadow: 220 10% 20%;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #0b0c0e;
+  --surface: #131417;
+  --surface-2: #1b1c20;
+  --line: rgb(255 255 255 / 0.08);
+  --fg: #ededee;
+  --muted: #9b9ca3;
+  --accent: #c6f04d;
+  --accent-ink: #0b0c0e;
+  --accent-fg: #c6f04d;
+  --shadow: 220 30% 2%;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-fg: var(--accent-fg);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
 
 html {
-  --line-color: #e5e7eb;
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
 }
 
-html.dark {
-  --line-color: #242424;
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
 }
 
-.borderBlack {
-  @apply border border-black/10;
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
 }
 
-/* Beautiful optimized hover effects for skill cards */
-.skill-card {
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-  will-change: transform;
-  backface-visibility: hidden;
+:focus-visible {
+  outline: 2px solid var(--accent-fg);
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 
-.skill-card:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-}
-
-.dark .skill-card:hover {
-  box-shadow: 0 20px 40px rgba(255, 255, 255, 0.12);
-}
-
-/* Icon wrapper and hover animations */
-.skill-icon-wrapper {
-  transition: transform 0.2s ease-out;
-  will-change: transform;
-}
-
-.skill-card:hover .skill-icon-wrapper {
-  transform: scale(1.05);
-}
-
-.skill-icon {
-  transition: transform 0.2s ease-out;
-  will-change: transform;
-}
-
-.skill-card:hover .skill-icon {
-  transform: scale(1.02);
-}
-
-/* Enhanced gradient backdrop on hover */
-.skill-card:hover .skill-icon-wrapper > div:first-child {
-  opacity: 0.5 !important;
-  transform: scale(1.4) !important;
-}
-
-/* Project Card Animations */
-.project-card {
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
-}
-
-.project-card:hover {
-  transform: translateY(-8px) scale(1.02);
-}
-
-/* Tech Tags Hover Effects */
-.tech-tag {
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  will-change: transform;
-}
-
-.tech-tag:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-/* Project Button Animations */
-.project-main-btn {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
-  position: relative;
-  overflow: hidden;
-}
-
-.project-main-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  transition: left 0.5s;
-}
-
-.project-main-btn:hover::before {
-  left: 100%;
-}
-
-/* Floating Link Button */
-.project-link-btn {
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  will-change: transform;
-}
-
-.project-link-btn:hover {
-  transform: scale(1.15) rotateZ(5deg);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-/* Experience Timeline Enhancements */
-.experience-element .vertical-timeline-element-content {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
-}
-
-.experience-element:hover .vertical-timeline-element-content {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
-}
-
-.dark .experience-element:hover .vertical-timeline-element-content {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
-}
-
-/* Experience Tech Tags */
-.experience-tech-tag {
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  will-change: transform;
-}
-
-/* Experience Type Badge */
-.experience-type-badge {
-  transition: all 0.3s ease;
-  will-change: transform;
-}
-
-.experience-element:hover .experience-type-badge {
-  transform: scale(1.1) rotateZ(-3deg);
-}
-
-/* Timeline Icon Enhancements */
-.vertical-timeline-element-icon {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
-}
-
-.experience-element:hover .vertical-timeline-element-icon {
-  transform: scale(1.1) rotateY(5deg);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25) !important;
-}
-
-/* Simple fade-in-up animation for projects */
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+/* Infinite loops only run when the visitor has not asked for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .animate-marquee {
+    animation: marquee 32s linear infinite;
   }
+  .animate-spin-slow {
+    animation: spin 28s linear infinite;
+  }
+  .animate-ping-soft {
+    animation: ping-soft 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@keyframes marquee {
   to {
-    opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
-.animate-fade-in-up {
-  animation: fade-in-up 0.4s ease-out;
+@keyframes ping-soft {
+  75%,
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
 }

@@ -1,84 +1,134 @@
 {
+  "meta": {
+    "skip": "Skip to content"
+  },
   "nav": {
     "home": "Home",
     "about": "About",
     "projects": "Projects",
     "skills": "Skills",
     "experience": "Experience",
-    "contact": "Contact"
+    "contact": "Contact",
+    "menu": "Open menu",
+    "closeMenu": "Close menu",
+    "theme": "Toggle theme",
+    "language": "Türkçeye geç"
   },
-  "intro": {
-    "greeting": "Hello, I'm Onur.",
-    "description": "I'm a full-stack developer with 2 years of experience. I enjoy building sites & apps. My focus is React (Next.js).",
-    "contactButton": "Contact me here",
-    "downloadCV": "Download CV"
+  "hero": {
+    "status": "Full-Stack Developer at Noktasal Yazılım",
+    "subtitle": "Full-stack developer focused on React and Node.js, building web, mobile and GIS products end to end.",
+    "contact": "Get in touch",
+    "cv": "Download CV",
+    "orbit": "FULL-STACK DEVELOPER  ✦  REACT  ✦  NODE.JS  ✦  GIS  ✦  "
   },
   "about": {
-    "title": "About me",
-    "description": "I graduated from Computer Engineering in 2025 and I'm passionate about building modern web applications. As a full-stack developer, I love working on both frontend and backend technologies. My favorite part of development is creating seamless user experiences while ensuring robust backend architecture.",
-    "frontend": "For frontend development, I work with Next.js, React, and Angular. On the backend, I use .NET Core and Node.js. For databases, I'm experienced with MongoDB, PostgreSQL, and MSSQL. I enjoy learning new technologies and staying up-to-date with the latest development trends.",
-    "career": "I'm currently seeking opportunities to grow as a full-stack developer and contribute to innovative projects. I believe in writing clean, maintainable code and creating applications that make a difference."
-  },
-  "skills": {
-    "title": "My skills",
-    "subtitle": "Technologies I love working with",
-    "frontend": "Frontend",
-    "backend": "Backend",
-    "database": "Database",
-    "tools": "Tools"
+    "title": "About",
+    "lead": "I graduated in Computer Engineering from Bilecik Şeyh Edebali University in 2025. I like building both the interface and the system behind it, from the screen a user sees to the query in the database.",
+    "stack": "I work with React, Next.js and Angular on the web, SwiftUI, Jetpack Compose and Flutter on mobile, and Node.js, Bun and .NET Core on the backend. Data lives in PostgreSQL, MongoDB or MS SQL, and apps ship on Docker and AWS.",
+    "career": "Since September 2025 I've been building GIS products at Noktasal Yazılım with React, Node.js and PostgreSQL. In my spare time I ship my own products; the latest is Salah.",
+    "educationLabel": "Education",
+    "education": "Computer Engineering",
+    "experienceLabel": "Currently",
+    "experience": "Full-Stack Developer",
+    "locationLabel": "Based in",
+    "location": "Kocaeli, Türkiye",
+    "educationSub": "Bilecik Şeyh Edebali University, 2021-2025",
+    "experienceSub": "Noktasal Yazılım, since September 2025"
   },
   "projects": {
-    "title": "My projects",
-    "subtitle": "A showcase of my creative development journey",
-    "viewProject": "View Project",
-    "liveDemo": "Live Demo",
-    "close": "Close",
-    "technologiesUsed": "Technologies Used",
-    "viewLiveProject": "View Live Project",
+    "title": "Selected work",
+    "liveDemo": "Live demo",
+    "source": "Source code",
     "mediumClone": {
       "title": "Medium Clone",
-      "description": "My Medium Clone app allows users to publish articles and discover content from other writers.",
-      "longDescription": "A comprehensive Medium clone featuring user authentication, article publishing, reading functionality, and social interactions. Built with modern web technologies focusing on performance and user experience."
+      "description": "A blog platform built on the MERN stack, with Google sign-in, a rich editor, search, comments and AWS S3 for images."
     },
     "twitterClone": {
       "title": "Twitter Clone",
-      "description": "My Twitter Clone app lets users post tweets, follow others, and interact with posts.",
-      "longDescription": "A full-featured Twitter clone with real-time updates, user authentication, tweet posting, following system, and social interactions. Built using Next.js and modern React patterns."
-    }
+      "description": "A social app built with Next.js, with profiles, a post feed, a follow system and real-time notifications."
+    },
+    "otherTitle": "More projects",
+    "geminiBlog": {
+      "title": "Blog with Gemini AI",
+      "description": "A blog that drafts post ideas, content and comment replies with Google Gemini. Redis caching, role-based JWT auth and an admin panel."
+    },
+    "pollApp": {
+      "title": "Poll platform",
+      "description": "A Google Forms style survey builder with analytics. Angular web, Flutter mobile, a .NET Core API and microservices on Docker."
+    },
+    "s3Drop": {
+      "title": "S3-Drop",
+      "description": "A fast, secure file sharing platform backed by AWS S3 storage and Cognito authentication."
+    },
+    "salah": {
+      "title": "Salah",
+      "description": "Prayer times, adhan notifications, a qibla compass, the Quran and a worship journal in one app. Native on iOS with SwiftUI and on Android with Jetpack Compose, backed by Bun, Express and PostgreSQL. Ad-free, free and works offline."
+    },
+    "website": "Website"
+  },
+  "skills": {
+    "title": "What I work with",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "database": "Database",
+    "tools": "Tools",
+    "frontendNote": "Web interfaces and native mobile apps.",
+    "backendNote": "APIs, services and business logic.",
+    "databaseNote": "Relational, document and cache."
   },
   "experience": {
-    "title": "My experience",
-    "clickToViewDetails": "Click to view details",
-    "technologiesAndSkills": "Technologies & Skills",
+    "title": "Experience",
+    "internship": "Internship",
     "basiskele": {
       "title": "React Developer",
-      "company": "Başiskele Municipality - IT Department",
-      "description": "I completed my internship at Başiskele Municipality's IT Department, focusing on web development using React. I developed various user interfaces and web components tailored to the municipality's needs, gaining hands-on experience with React throughout the process."
+      "company": "Başiskele Municipality, IT Department",
+      "date": "July 2024",
+      "location": "Kocaeli",
+      "description": "Built user interfaces and web components tailored to the municipality's needs, gaining hands-on experience with React along the way."
     },
     "isu": {
       "title": "Systems and Cloud Intern",
-      "company": "İSU General Directorate - IT Department",
-      "description": "During my internship at İSU General Directorate's IT Department, I gained practical experience in managing and optimizing cloud infrastructure. My responsibilities included configuring cloud services, ensuring system reliability and scalability, and contributing to the implementation of security protocols."
+      "company": "İSU General Directorate, IT Department",
+      "date": "August 2024",
+      "location": "Kocaeli",
+      "description": "Configured cloud services, worked on system reliability and scalability, and contributed to rolling out security protocols."
     },
     "premierturk": {
       "title": "Software Development Intern",
-      "company": "PremierTürk Information Technologies Inc. - Kocaeli Technopark",
-      "description": "Between February and July 2025, I completed a long-term software development internship at PremierTürk Information Technologies Inc. During this time, I developed full-stack web and mobile applications using .NET Core, Angular, and Flutter. I actively participated in team-based projects and contributed to the development lifecycle."
+      "company": "PremierTürk Information Technologies, Kocaeli Technopark",
+      "date": "February 2025 - July 2025",
+      "location": "Kocaeli",
+      "description": "In an agile team, built two products with Angular, .NET Core and Flutter: an MS SQL survey platform running as microservices on Docker, and a map-based events app using Leaflet and MongoDB."
+    },
+    "current": "Current",
+    "noktasal": {
+      "title": "Full-Stack Developer",
+      "company": "Noktasal Yazılım, Başiskele Technopark",
+      "date": "September 2025 - Present",
+      "description": "Building web applications focused on geographic information systems (GIS) with React and Node.js, with PostgreSQL on the data layer.",
+      "location": "Kocaeli"
     }
   },
   "contact": {
-    "title": "Contact me",
-    "subtitle": "Please contact me directly at onuryilm.41@gmail.com or through this form.",
-    "namePlaceholder": "Your name",
-    "emailPlaceholder": "Your email",
-    "messagePlaceholder": "Your message",
-    "submit": "Submit",
-    "sending": "Sending...",
-    "successMessage": "Email sent successfully!",
-    "errorMessage": "Failed to send email. Please try again."
+    "marquee": "Let's build something",
+    "title": "Contact",
+    "intro": "Write to me about a role or a project. Email or the form, whichever is easier.",
+    "copy": "Copy email",
+    "copied": "Copied",
+    "name": "Your name",
+    "email": "Your email",
+    "message": "Your message",
+    "required": "This field is required.",
+    "invalidEmail": "Enter a valid email address.",
+    "submit": "Send message",
+    "sending": "Sending",
+    "successTitle": "Message received.",
+    "successBody": "I'll get back to you soon.",
+    "again": "Write another",
+    "error": "Couldn't send the message. Try again or email me directly."
   },
   "footer": {
-    "copyright": "All rights reserved.",
-    "built": "Built with React & Next.js."
+    "rights": "All rights reserved.",
+    "top": "Back to top"
   }
 }

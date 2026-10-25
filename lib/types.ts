@@ -1,49 +1,55 @@
-import { links } from "./data";
-import { IconType } from "react-icons";
-import { StaticImageData } from "next/image";
+import type { IconType } from "react-icons";
+import type { StaticImageData } from "next/image";
 
-export type SectionName = (typeof links)[number]["name"];
+export type SectionId =
+  | "home"
+  | "about"
+  | "projects"
+  | "skills"
+  | "experience"
+  | "contact";
 
-// Experience Types
-export interface Experience {
-  id: string;
-  title: string;
-  company: string;
-  location: string;
-  description: string;
-  technologies: string[];
-  icon: IconType;
-  date: string;
-  type: "internship" | "full-time" | "part-time" | "freelance";
-}
-
-// Project Types
-export interface Project {
-  id: string;
-  title: string;
-  description: string;
-  longDescription?: string;
-  technologies: string[];
-  imageUrl: StaticImageData;
-  liveUrl?: string;
-  githubUrl?: string;
-  featured: boolean;
-  status: "completed" | "in-progress" | "planned";
-  category: "web" | "mobile" | "desktop" | "api" | "other";
-}
-
-// Skill Types
-export interface Skill {
-  id: string;
-  name: string;
-  icon: IconType;
-  category: "frontend" | "backend" | "database" | "tools" | "other";
-  level: "beginner" | "intermediate" | "advanced" | "expert";
-  yearsOfExperience?: number;
-}
-
-// Navigation Link Types
 export interface NavigationLink {
+  id: SectionId;
+  hash: `#${SectionId}`;
+}
+
+// Text for experiences and projects lives in lib/locales, keyed by id.
+export interface Experience {
+  id: "noktasal" | "basiskele" | "isu" | "premierturk";
+  technologies: string[];
+  type: "internship" | "full-time" | "part-time" | "freelance";
+  current?: boolean;
+}
+
+export interface Project {
+  id: "salah";
+  technologies: string[];
+  image: StaticImageData;
+  liveUrl: string;
+  githubUrl?: string;
+  appStoreUrl?: string;
+  playStoreUrl?: string;
+}
+
+// Smaller projects without a screenshot, listed under the featured stack.
+export interface OtherProject {
+  id: "twitterClone" | "mediumClone" | "geminiBlog" | "pollApp" | "s3Drop";
+  technologies: string[];
+  githubUrl: string;
+  liveUrl?: string;
+}
+
+export type SkillCategory = "frontend" | "backend" | "database" | "tools";
+
+export interface Skill {
   name: string;
-  hash: string;
+  icon: IconType;
+  category: SkillCategory;
+}
+
+export interface ContactFormData {
+  name: string;
+  email: string;
+  message: string;
 }

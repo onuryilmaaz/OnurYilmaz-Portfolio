@@ -1,226 +1,118 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef } from "react";
+import { motion, useScroll, useSpring } from "motion/react";
 import SectionHeading from "./section-heading";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
-import "react-vertical-timeline-component/style.min.css";
-import { experiences, experiencesData } from "@/lib/data";
-import { useSectionInView } from "@/lib/hooks";
-import { useTheme } from "@/context/theme-context";
+import { experiences } from "@/lib/data";
 import { useLanguage } from "@/context/language-context";
-import { motion, AnimatePresence } from "framer-motion";
-import { FiX, FiMapPin, FiCalendar } from "react-icons/fi";
 
-// Experience type colors
-const experienceColors: { [key: string]: string } = {
-  internship: "bg-blue-500",
-  "full-time": "bg-green-500",
-  "part-time": "bg-yellow-500",
-  contract: "bg-purple-500",
-  freelance: "bg-pink-500",
-};
-
-// Technology colors
-const techColors: { [key: string]: string } = {
-  React: "bg-cyan-500",
-  JavaScript: "bg-yellow-500",
-  HTML: "bg-orange-500",
-  CSS: "bg-blue-600",
-  Git: "bg-red-500",
-  "Cloud Computing": "bg-sky-500",
-  "System Administration": "bg-gray-600",
-  Security: "bg-red-600",
-  Networking: "bg-indigo-500",
-  ".NET Core": "bg-purple-600",
-  Angular: "bg-red-500",
-  Flutter: "bg-blue-400",
-  "Full-Stack Development": "bg-green-600",
-  "Team Collaboration": "bg-teal-500",
-};
+const ease = [0.16, 1, 0.3, 1] as const;
 
 export default function Experience() {
-  const { ref } = useSectionInView("Experience", 0.4);
-  const { theme } = useTheme();
   const { t } = useLanguage();
-  const [selectedExperience, setSelectedExperience] = useState<
-    (typeof experiences)[0] | null
-  >(null);
-
-  // Experience key mapping
-  const getExperienceKey = (expId: string) => {
-    if (expId.includes("basiskele")) return "basiskele";
-    if (expId.includes("isu")) return "isu";
-    if (expId.includes("premierturk")) return "premierturk";
-    return "basiskele"; // fallback
-  };
+  const listRef = useRef<HTMLOListElement>(null);
+  const { scrollYProgress } = useScroll({ target: listRef, offset: ["start 0.75", "end 0.6"] });
+  const drawn = useSpring(scrollYProgress, { stiffness: 120, damping: 28 });
 
   return (
-    <section id="experience" ref={ref} className="scroll-mt-28 mb-28 sm:mb-40">
-      <SectionHeading>{t("experience.title")}</SectionHeading>
+    <section id="experience" aria-labelledby="experience-title" className="scroll-mt-20 py-24 md:py-32">
+      <div className="mx-auto grid max-w-350 grid-cols-1 gap-12 px-4 md:px-8 lg:grid-cols-12 lg:gap-8">
+        <div className="lg:col-span-4">
+          <div className="lg:sticky lg:top-32">
+            <SectionHeading id="experience-title">{t("experience.title")}</SectionHeading>
+          </div>
+        </div>
 
-      <VerticalTimeline lineColor="">
-        {experiences.map((item, index) => {
-          const experienceKey = getExperienceKey(item.id);
-
-          return (
-            <React.Fragment key={index}>
-              <VerticalTimelineElement
-                contentStyle={{
-                  background:
-                    theme === "light" ? "#f3f4f6" : "rgba(255, 255, 255, 0.05)",
-                  boxShadow: "none",
-                  border: "1px solid rgba(0, 0, 0, 0.05)",
-                  textAlign: "left",
-                  padding: "1.3rem 2rem",
-                  cursor: "pointer",
-                }}
-                contentArrowStyle={{
-                  borderRight:
-                    theme === "light"
-                      ? "0.4rem solid #9ca3af"
-                      : "0.4rem solid rgba(255, 255, 255, 0.5)",
-                }}
-                date={item.date}
-                icon={React.createElement(item.icon)}
-                iconStyle={{
-                  background:
-                    theme === "light" ? "#f3f4f6" : "rgba(255, 255, 255, 0.15)",
-                  fontSize: "1.5rem",
-                }}
-                onTimelineElementClick={() => {
-                  setSelectedExperience(item);
-                }}
-              >
-                <h3 className="font-semibold capitalize">
-                  {t(`experience.${experienceKey}.title`)}
-                </h3>
-                <p className="font-normal !mt-0">
-                  {t(`experience.${experienceKey}.company`)}
-                </p>
-                <p className="!mt-1 !font-normal text-gray-700 dark:text-white/75">
-                  {t(`experience.${experienceKey}.description`)}
-                </p>
-                <p className="text-xs text-gray-500 dark:text-white/50 mt-2">
-                  {t("experience.clickToViewDetails")}
-                </p>
-              </VerticalTimelineElement>
-            </React.Fragment>
-          );
-        })}
-      </VerticalTimeline>
-
-      {/* Modal */}
-      <AnimatePresence>
-        {selectedExperience && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4"
-            onClick={() => setSelectedExperience(null)}
+        <ol ref={listRef} className="relative lg:col-span-8">
+          {/* Timeline rail: a faint track with an accent stroke drawn by scroll progress */}
+          <svg
+            aria-hidden
+            className="absolute left-2.75 top-2 h-[calc(100%-1rem)] w-0.5 overflow-visible"
+            viewBox="0 0 2 100"
+            preserveAspectRatio="none"
           >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="bg-white dark:bg-gray-900 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-xl border border-gray-200 dark:border-gray-700"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Modal Header */}
-              <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 p-8 rounded-t-2xl">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="text-5xl text-gray-600 dark:text-white/80">
-                    {React.createElement(selectedExperience.icon)}
-                  </div>
+            <path d="M1 0 V100" stroke="var(--line)" strokeWidth="2" />
+            <motion.path
+              d="M1 0 V100"
+              stroke="var(--accent-fg)"
+              strokeWidth="2"
+             
+              style={{ pathLength: drawn }}
+            />
+          </svg>
 
-                  {/* Close Button */}
-                  <button
-                    onClick={() => setSelectedExperience(null)}
-                    className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full p-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
-                  >
-                    <FiX className="w-5 h-5 text-gray-700 dark:text-white" />
-                  </button>
+          {experiences.map((item) => {
+            const locationKey = `experience.${item.id}.location`;
+            const location = t(locationKey);
+            return (
+            <li key={item.id} className="relative pb-16 pl-12 last:pb-0 md:pl-16">
+              <span
+                aria-hidden
+                className="absolute left-0 top-1.5 grid size-6 place-items-center rounded-full border-2 border-line bg-bg"
+              >
+                <motion.span
+                  className="absolute -inset-0.5 rounded-full border-2 border-accent-fg"
+                  initial={{ scale: 0.4, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ margin: "0px 0px -40% 0px", once: true }}
+                  transition={{ type: "spring", stiffness: 300, damping: 18 }}
+                />
+                <motion.span
+                  className="size-2 rounded-full bg-accent-fg"
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ margin: "0px 0px -40% 0px", once: true }}
+                  transition={{ type: "spring", stiffness: 400, damping: 14, delay: 0.1 }}
+                />
+              </span>
+
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.8, ease }}
+              >
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs text-muted">
+                  <span>{t(`experience.${item.id}.date`)}</span>
+                  {location !== locationKey && (
+                    <>
+                      <span aria-hidden className="h-px w-4 bg-line" />
+                      <span>{location}</span>
+                    </>
+                  )}
+                  {item.current ? (
+                    <span className="rounded-full bg-accent px-2 py-0.5 font-medium text-accent-ink">
+                      {t("experience.current")}
+                    </span>
+                  ) : (
+                    <span className="rounded-full border border-line px-2 py-0.5">
+                      {t(`experience.${item.type}`)}
+                    </span>
+                  )}
                 </div>
-
-                {/* Type Badge */}
-                <span
-                  className={`${
-                    experienceColors[selectedExperience.type] || "bg-gray-500"
-                  } text-white px-3 py-1 rounded-full text-sm font-medium capitalize inline-block mb-4`}
-                >
-                  {selectedExperience.type}
-                </span>
-              </div>
-
-              {/* Modal Content */}
-              <div className="p-6">
-                {/* Title & Company */}
-                <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-2 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
-                  {t(
-                    `experience.${getExperienceKey(
-                      selectedExperience.id
-                    )}.title`
-                  )}
-                </h2>
-
-                <h3 className="text-xl font-semibold text-gray-700 dark:text-white/80 mb-4">
-                  {t(
-                    `experience.${getExperienceKey(
-                      selectedExperience.id
-                    )}.company`
-                  )}
+                <h3 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">
+                  {t(`experience.${item.id}.title`)}
                 </h3>
-
-                {/* Location & Date */}
-                <div className="flex flex-wrap gap-4 text-gray-500 dark:text-white/60 mb-6">
-                  <div className="flex items-center gap-2">
-                    <FiMapPin className="w-4 h-4" />
-                    <span>{selectedExperience.location}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <FiCalendar className="w-4 h-4" />
-                    <span>{selectedExperience.date}</span>
-                  </div>
-                </div>
-
-                {/* Description */}
-                <p className="text-lg text-gray-600 dark:text-white/80 leading-relaxed mb-6">
-                  {t(
-                    `experience.${getExperienceKey(
-                      selectedExperience.id
-                    )}.description`
-                  )}
+                <p className="mt-1 text-fg/80">{t(`experience.${item.id}.company`)}</p>
+                <p className="mt-4 max-w-[60ch] leading-relaxed text-muted">
+                  {t(`experience.${item.id}.description`)}
                 </p>
-
-                {/* Technologies */}
-                <div className="mb-6">
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-                    <span className="w-1 h-6 bg-gradient-to-b from-cyan-500 to-blue-600 rounded-full"></span>
-                    {t("experience.technologiesAndSkills")}
-                  </h4>
-                  <div className="flex flex-wrap gap-3">
-                    {selectedExperience.technologies.map((tech, index) => {
-                      const bgColor = techColors[tech] || "bg-gray-500";
-                      return (
-                        <span
-                          key={index}
-                          className={`${bgColor} text-white px-4 py-2 rounded-xl text-sm font-medium`}
-                        >
-                          {tech}
-                        </span>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                <ul className="mt-5 flex flex-wrap gap-2">
+                  {item.technologies.map((tech) => (
+                    <li
+                      key={tech}
+                      className="rounded-full bg-surface-2 px-3 py-1 font-mono text-xs text-fg/80"
+                    >
+                      {tech}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            </li>
+            );
+          })}
+        </ol>
+      </div>
     </section>
   );
 }

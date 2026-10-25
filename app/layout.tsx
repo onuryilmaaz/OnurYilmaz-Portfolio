@@ -1,19 +1,40 @@
-import Header from "@/components/header";
 import "./globals.css";
-import { Inter } from "next/font/google";
-import ActiveSectionContextProvider from "@/context/active-section-context";
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import Providers from "@/components/providers";
+import Header from "@/components/header";
 import Footer from "@/components/footer";
-import ThemeSwitch from "@/components/theme-switch";
-import LanguageSwitch from "@/components/language-switch";
-import ThemeContextProvider from "@/context/theme-context";
-import LanguageContextProvider from "@/context/language-context";
-import { Toaster } from "react-hot-toast";
+import Grain from "@/components/grain";
+import { themeInitScript } from "@/context/theme-context";
 
-const inter = Inter({ subsets: ["latin"] });
+const geistSans = Geist({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-geist-sans",
+  display: "swap",
+});
 
-export const metadata = {
-  title: "Onur | Personal Portfolio",
-  description: "Onur is a full-stack developer with 1 years of experience.",
+const geistMono = Geist_Mono({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-geist-mono",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  title: "Onur Yılmaz | Full-Stack Developer",
+  description:
+    "Onur Yılmaz, Noktasal Yazılım'da React ve Node.js odaklı full-stack geliştirici. Full-stack developer focused on React, Node.js and GIS.",
+  openGraph: {
+    title: "Onur Yılmaz | Full-Stack Developer",
+    description: "Full-stack developer focused on React, Node.js and GIS.",
+    type: "website",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f4f4f5" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b0c0e" },
+  ],
 };
 
 export default function RootLayout({
@@ -22,29 +43,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="!scroll-smooth">
+    <html
+      lang="tr"
+      className={`${geistSans.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
-        <link rel="icon" href="app/favicon.ico" />
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
-      <body
-        className={`${inter.className} bg-gray-50 text-gray-950 relative pt-28 sm:pt-36 dark:bg-gray-900 dark:text-gray-50 dark:text-opacity-90`}
-      >
-        <div className="bg-[#fbe2e3] absolute top-[-6rem] -z-10 right-[11rem] h-[31.25rem] w-[31.25rem] rounded-full blur-[10rem] sm:w-[68.75rem] dark:bg-[#946263]"></div>
-        <div className="bg-[#dbd7fb] absolute top-[-1rem] -z-10 left-[-35rem] h-[31.25rem] w-[50rem] rounded-full blur-[10rem] sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem] dark:bg-[#676394]"></div>
-
-        <ThemeContextProvider>
-          <LanguageContextProvider>
-            <ActiveSectionContextProvider>
-              <Header />
-              {children}
-              <Footer />
-
-              <Toaster position="top-right" />
-              <ThemeSwitch />
-              <LanguageSwitch />
-            </ActiveSectionContextProvider>
-          </LanguageContextProvider>
-        </ThemeContextProvider>
+      <body className="font-sans antialiased">
+        <Providers>
+          <Header />
+          <main id="main">{children}</main>
+          <Footer />
+        </Providers>
+        <Grain />
       </body>
     </html>
   );

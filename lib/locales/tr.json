@@ -1,84 +1,134 @@
 {
+  "meta": {
+    "skip": "İçeriğe geç"
+  },
   "nav": {
     "home": "Ana Sayfa",
     "about": "Hakkımda",
     "projects": "Projeler",
     "skills": "Yetenekler",
     "experience": "Deneyim",
-    "contact": "İletişim"
+    "contact": "İletişim",
+    "menu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat",
+    "theme": "Temayı değiştir",
+    "language": "Switch to English"
   },
-  "intro": {
-    "greeting": "Merhaba, ben Onur.",
-    "description": "2 yıllık deneyime sahip bir full-stack geliştiriciyim. Web siteleri ve uygulamalar geliştirmeyi seviyorum. Odağım React (Next.js).",
-    "contactButton": "Benimle iletişime geç",
-    "downloadCV": "CV İndir"
+  "hero": {
+    "status": "Noktasal Yazılım'da Full-Stack Developer",
+    "subtitle": "React ve Node.js odaklı full-stack geliştirici. Web, mobil ve GIS projelerini uçtan uca geliştiriyorum.",
+    "contact": "İletişime geç",
+    "cv": "CV indir",
+    "orbit": "FULL-STACK GELİŞTİRİCİ  ✦  REACT  ✦  NODE.JS  ✦  GIS  ✦  "
   },
   "about": {
     "title": "Hakkımda",
-    "description": "2025 yılında Bilgisayar Mühendisliği'nden mezun oldum ve modern web uygulamaları geliştirme konusunda tutkuluyum. Bir full-stack geliştirici olarak hem frontend hem de backend teknolojileriyle çalışmayı seviyorum. Geliştirmenin en sevdiğim yanı, sağlam backend mimarisi sağlarken kusursuz kullanıcı deneyimleri yaratmaktır.",
-    "frontend": "Frontend geliştirme için Next.js, React ve Angular ile çalışıyorum. Backend tarafında .NET Core ve Node.js kullanıyorum. Veritabanları konusunda MongoDB, PostgreSQL ve MSSQL ile deneyimliyim. Yeni teknolojileri öğrenmeyi ve en son geliştirme trendlerini takip etmeyi seviyorum.",
-    "career": "Şu anda full-stack geliştirici olarak büyümek ve yenilikçi projelere katkıda bulunmak için fırsatlar arıyorum. Temiz, sürdürülebilir kod yazmaya ve fark yaratan uygulamalar oluşturmaya inanıyorum."
-  },
-  "skills": {
-    "title": "Yeteneklerim",
-    "subtitle": "Çalışmayı sevdiğim teknolojiler",
-    "frontend": "Frontend",
-    "backend": "Backend",
-    "database": "Veritabanı",
-    "tools": "Araçlar"
+    "lead": "2025'te Bilecik Şeyh Edebali Üniversitesi Bilgisayar Mühendisliği'nden mezun oldum. Hem arayüzü hem de arkasındaki sistemi kurmayı seviyorum: kullanıcının gördüğü ekrandan veritabanındaki sorguya kadar.",
+    "stack": "Web'de React, Next.js ve Angular, mobilde SwiftUI, Jetpack Compose ve Flutter, backend'de Node.js, Bun ve .NET Core ile çalışıyorum. Verilerim PostgreSQL, MongoDB veya MS SQL'de, uygulamalarım Docker ve AWS üzerinde.",
+    "career": "Eylül 2025'ten beri Noktasal Yazılım'da React, Node.js ve PostgreSQL ile GIS projeleri geliştiriyorum. Boş zamanımda kendi ürünlerimi yayınlıyorum; en sonuncusu Salah.",
+    "educationLabel": "Eğitim",
+    "education": "Bilgisayar Mühendisliği",
+    "experienceLabel": "Şu an",
+    "experience": "Full-Stack Developer",
+    "locationLabel": "Konum",
+    "location": "Kocaeli, Türkiye",
+    "educationSub": "Bilecik Şeyh Edebali Üniversitesi, 2021-2025",
+    "experienceSub": "Noktasal Yazılım, Eylül 2025'ten beri"
   },
   "projects": {
-    "title": "Projelerim",
-    "subtitle": "Yaratıcı geliştirme yolculuğumun bir vitrinii",
-    "viewProject": "Projeyi Görüntüle",
-    "liveDemo": "Canlı Demo",
-    "close": "Kapat",
-    "technologiesUsed": "Kullanılan Teknolojiler",
-    "viewLiveProject": "Canlı Projeyi Görüntüle",
+    "title": "Seçili işler",
+    "liveDemo": "Canlı demo",
+    "source": "Kaynak kod",
     "mediumClone": {
       "title": "Medium Klonu",
-      "description": "Medium Clone uygulamam kullanıcıların makale yayınlamasına ve diğer yazarlardan içerik keşfetmesine olanak tanır.",
-      "longDescription": "Kullanıcı kimlik doğrulama, makale yayınlama, okuma işlevselliği ve sosyal etkileşimler içeren kapsamlı bir Medium klonu. Performans ve kullanıcı deneyimi odaklı modern web teknolojileri ile geliştirildi."
+      "description": "MERN yığınıyla geliştirdiğim blog platformu. Google ile giriş, zengin yazı editörü, arama, yorumlar ve görseller için AWS S3 entegrasyonu içeriyor."
     },
     "twitterClone": {
       "title": "Twitter Klonu",
-      "description": "Twitter Clone uygulamam kullanıcıların tweet gönderme, başkalarını takip etme ve gönderilerle etkileşim kurmasına olanak tanır.",
-      "longDescription": "Gerçek zamanlı güncellemeler, kullanıcı kimlik doğrulama, tweet gönderme, takip sistemi ve sosyal etkileşimler içeren tam özellikli bir Twitter klonu. Next.js ve modern React desenleri kullanılarak geliştirildi."
-    }
+      "description": "Next.js ile geliştirdiğim sosyal medya uygulaması. Profiller, gönderi akışı, takip sistemi ve gerçek zamanlı bildirimler içeriyor."
+    },
+    "otherTitle": "Diğer projeler",
+    "geminiBlog": {
+      "title": "Gemini AI destekli blog",
+      "description": "Gönderi fikri, içerik ve yorum yanıtlarını Google Gemini ile üreten blog. Redis önbellek, rol tabanlı JWT yetkilendirme ve yönetim paneli."
+    },
+    "pollApp": {
+      "title": "Anket platformu",
+      "description": "Google Forms benzeri anket oluşturma ve analiz platformu. Angular web, Flutter mobil, .NET Core API ve Docker üzerinde mikroservis mimarisi."
+    },
+    "s3Drop": {
+      "title": "S3-Drop",
+      "description": "AWS S3 depolama ve Cognito kimlik doğrulamasıyla çalışan, hızlı ve güvenli bir dosya paylaşım platformu."
+    },
+    "salah": {
+      "title": "Salah",
+      "description": "Namaz vakitleri, ezanlı bildirimler, kıble pusulası, Kur'an ve ibadet defteri tek uygulamada. iOS'ta SwiftUI, Android'de Jetpack Compose ile native; backend Bun, Express ve PostgreSQL. Reklamsız, ücretsiz ve internetsiz çalışıyor."
+    },
+    "website": "Web sitesi"
+  },
+  "skills": {
+    "title": "Kullandığım teknolojiler",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "database": "Veritabanı",
+    "tools": "Araçlar",
+    "frontendNote": "Web arayüzleri ve native mobil uygulamalar.",
+    "backendNote": "API'ler, servisler ve iş mantığı.",
+    "databaseNote": "İlişkisel, doküman tabanlı ve önbellek."
   },
   "experience": {
-    "title": "Deneyimim",
-    "clickToViewDetails": "Detayları görüntülemek için tıklayın",
-    "technologiesAndSkills": "Teknolojiler ve Beceriler",
+    "title": "Deneyim",
+    "internship": "Staj",
     "basiskele": {
       "title": "React Geliştirici",
-      "company": "Başiskele Belediyesi - IT Bölümü",
-      "description": "Başiskele Belediyesi IT Bölümü'nde stajımı tamamladım ve React kullanarak web geliştirme üzerine odaklandım. Belediyenin ihtiyaçlarına yönelik çeşitli kullanıcı arayüzleri ve web bileşenleri geliştirdim, süreç boyunca React ile uygulamalı deneyim kazandım."
+      "company": "Başiskele Belediyesi, Bilgi İşlem",
+      "date": "Temmuz 2024",
+      "location": "Kocaeli",
+      "description": "Belediyenin ihtiyaçlarına yönelik kullanıcı arayüzleri ve web bileşenleri geliştirdim. Süreç boyunca React ile uygulamalı deneyim kazandım."
     },
     "isu": {
       "title": "Sistem ve Bulut Stajyeri",
-      "company": "İSU Genel Müdürlüğü - IT Bölümü",
-      "description": "İSU Genel Müdürlüğü IT Bölümü'ndeki stajım süresince bulut altyapısını yönetme ve optimize etme konusunda pratik deneyim kazandım. Sorumluluklarım arasında bulut hizmetlerini yapılandırma, sistem güvenilirliği ve ölçeklenebilirliğini sağlama ve güvenlik protokollerinin uygulanmasına katkıda bulunma yer aldı."
+      "company": "İSU Genel Müdürlüğü, Bilgi İşlem",
+      "date": "Ağustos 2024",
+      "location": "Kocaeli",
+      "description": "Bulut servislerini yapılandırdım, sistem güvenilirliği ve ölçeklenebilirliği üzerinde çalıştım ve güvenlik protokollerinin uygulanmasına katkı verdim."
     },
     "premierturk": {
       "title": "Yazılım Geliştirme Stajyeri",
-      "company": "PremierTürk Bilgi Teknolojileri A.Ş. - Kocaeli Teknokent",
-      "description": "Şubat ile Temmuz 2025 arasında PremierTürk Bilgi Teknolojileri A.Ş.'de uzun dönemli yazılım geliştirme stajımı tamamladım. Bu süre zarfında .NET Core, Angular ve Flutter kullanarak full-stack web ve mobil uygulamalar geliştirdim. Takım tabanlı projelerde aktif olarak yer aldım ve geliştirme yaşam döngüsüne katkıda bulundum."
+      "company": "PremierTürk Bilgi Teknolojileri, Kocaeli Teknopark",
+      "date": "Şubat 2025 - Temmuz 2025",
+      "location": "Kocaeli",
+      "description": "Çevik bir ekipte Angular, .NET Core ve Flutter ile iki ürün geliştirdim: Docker üzerinde mikroservis olarak çalışan, MS SQL tabanlı bir anket platformu ve Leaflet ile MongoDB kullanan harita tabanlı bir etkinlik uygulaması."
+    },
+    "current": "Güncel",
+    "noktasal": {
+      "title": "Full-Stack Developer",
+      "company": "Noktasal Yazılım, Başiskele Teknopark",
+      "date": "Eylül 2025 - Günümüz",
+      "description": "React ve Node.js ile coğrafi bilgi sistemleri (GIS) odaklı web uygulamaları geliştiriyorum. Veri katmanında PostgreSQL ile çalışıyorum.",
+      "location": "Kocaeli"
     }
   },
   "contact": {
+    "marquee": "Birlikte bir şey yapalım",
     "title": "İletişim",
-    "subtitle": "Lütfen doğrudan onuryilm.41@gmail.com adresinden veya bu form aracılığıyla benimle iletişime geçin.",
-    "namePlaceholder": "Adınız",
-    "emailPlaceholder": "E-posta adresiniz",
-    "messagePlaceholder": "Mesajınız",
-    "submit": "Gönder",
-    "sending": "Gönderiliyor...",
-    "successMessage": "E-posta başarıyla gönderildi!",
-    "errorMessage": "E-posta gönderilemedi. Lütfen tekrar deneyin."
+    "intro": "Bir iş fırsatı ya da proje için yazabilirsin. E-posta veya form, hangisi kolayına gelirse.",
+    "copy": "E-postayı kopyala",
+    "copied": "Kopyalandı",
+    "name": "Adın",
+    "email": "E-posta adresin",
+    "message": "Mesajın",
+    "required": "Bu alanı doldurman gerekiyor.",
+    "invalidEmail": "Geçerli bir e-posta adresi gir.",
+    "submit": "Mesajı gönder",
+    "sending": "Gönderiliyor",
+    "successTitle": "Mesajın ulaştı.",
+    "successBody": "En kısa sürede dönüş yapacağım.",
+    "again": "Yeni mesaj yaz",
+    "error": "Mesaj gönderilemedi. Tekrar dene ya da doğrudan e-posta at."
   },
   "footer": {
-    "copyright": "Tüm hakları saklıdır.",
-    "built": "React & Next.js ile yapıldı."
+    "rights": "Tüm hakları saklıdır.",
+    "top": "Başa dön"
   }
 }
